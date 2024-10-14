@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Reveal effect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class="main h-full w-full bg-[#121212] text-[#FFFFFF]">
+<div class="home h-screen w-full flex items-center justify-center">
+    <h1 class="text-8xl text-center font-semibold">HIGH-END VISUAL FOR EXCLUSIVE EXQUISITE MOMENTS</h1>
+</div>
+<div class="anime h-[135vh] w-full relative overflow-hidden">
+    <div class="text h-full w-full flex items-center justify-center flex-col">
+        <h1 class="text-3xl text-center w-[34%] font-semibold">We ignite the passion that compels your audience to book their next unforgettable stay.</h1>
+    <button class="uppercase mt-10 border-2 border-[#E0FD60] text-[#E0FD60] font-semibold px-7 py-4 rounded-full">More About Us</button>
+    </div>
+    <div class="img-container h-full w-full absolute top-0 flex flex-wrap items-center justify-center gap-4 p-6">
+        <div class="img1 h-[60vh] w-[46vw] overflow-hidden">
+            <img class="object-cover" src="https://luxeframe.netlify.app/moreAboutus1.webp" alt="">
+        </div>
+        <div class="img2 h-[60vh] w-[46vw] overflow-hidden">
+            <img class="object-cover h-[60vh]" src="https://luxeframe.netlify.app/moreAboutus2.webp" alt="">
+        </div>
+        <div class="img3 h-[65vh] w-[46vw] overflow-hidden">
+            <img class="object-cover" src="https://luxeframe.netlify.app/moreAboutus5.webp" alt="">
+        </div>
+        <div class="img4 h-[60vh] w-[46vw] overflow-hidden">
+            <img class="object-cover h-[62vh] w-[46vw]" src="https://luxeframe.netlify.app/moreAboutus6.webp" alt="">
+        </div>
+    </div>
+</div>
+</div>
+    
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+// Initialize a new Lenis instance for smooth scrolling
+const lenis = new Lenis();
+
+// Listen for the 'scroll' event and log the event data to the console
+lenis.on('scroll', (e) => {
+  console.log(e);
+});
+
+// Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+lenis.on('scroll', ScrollTrigger.update);
+
+// Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+// This ensures Lenis's smooth scroll animation updates on each GSAP tick
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+});
+
+// Disable lag smoothing in GSAP to prevent any delay in scroll animations
+gsap.ticker.lagSmoothing(0);
+
+
+
+
+let tl = gsap.timeline(
+    {scrollTrigger:
+         {trigger: ".anime",
+            start: "top 40%",
+            end : "90% bottom",
+            scrub : true,
+            ease : "circ"
+         }});
+
+         tl.to(".img1",{
+            x: -400,
+            rotate : "-30deg"
+         },"a")
+         .to(".img2",{
+            x: 400,
+            rotate : "30deg"
+         },"a")
+         .to(".img3",{
+            x: -400,
+            rotate : "-30deg"
+         },"a")
+         .to(".img4",{
+            x: 400,
+            rotate : "30deg"
+         },"a")
+         
+         let tl1 = gsap.timeline(
+    {scrollTrigger:
+         {trigger: ".anime",
+            start: "top 50%",
+            end : "50% 70%",
+            scrub : true,
+            ease: "power2"
+         }});
+
+         tl1.from(".text",{
+            opacity : 0,
+            y: 100
+         },"b")
+
+
+
+</script>
+
+</body>
+</html>
